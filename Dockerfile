@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 ARG username
 ARG password
 RUN apt update && apt install -y default-jdk maven git
