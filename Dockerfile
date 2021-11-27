@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ARG username
-ARG password
+ARG token
 RUN apt update && apt install -y default-jdk maven git
 ENV PACKAGE_DIR="/package"
 WORKDIR $PACKAGE_DIR
@@ -14,5 +14,5 @@ RUN git config --global user.email "dlmurga@yandex.ru" && \
     git add hello-world-war-1.0.0.war && \
     git commit -m "war file added" && \
     git branch -M main && \
-    git remote add origin https://$username:$password@github.com/dlmurga/ds-08-docker.git && \
+    git remote add origin https://$username:$token@github.com/dlmurga/ds-08-docker.git && \
     git push -u origin main
