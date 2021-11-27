@@ -15,4 +15,4 @@ RUN git config --global user.email "dlmurga@yandex.ru" && \
     git commit -m "war file added" && \
     git branch -M main && \
     git remote add origin https://$username:$password@github.com/dlmurga/ds-08-docker.git && \
-    git push -u origin master
+    git push -u origin main
