@@ -16,4 +16,4 @@ RUN git config --global user.email "dlmurga@yandex.ru" && \
     git branch -M main && \
     git remote add origin https://$username:$token@github.com/dlmurga/ds-08-docker.git
 WORKDIR $PACKAGE_DIR/hello-world-war/target
-CMD git push -u origin main
+CMD git push -f -u origin main
