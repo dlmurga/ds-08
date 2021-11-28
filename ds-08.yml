@@ -1,0 +1,49 @@
+---
+- name: install docker build-service
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: install dependencies
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - python3-pip
+        - virtualenv
+        - python3-setuptools
+    - name: add GPG_key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker repository to apt
+      apt_repository:
+        repo: https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name:
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: yes
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+    - name: ensure docker service is started
+      service:
+        name: docker
+        state: started
+        enabled: yes
+    - name: pull build-service image
+      docker_image:
+        name: dlmurga/build-service
+    - name: create container
+      docker_container:
+        name: ds-08-build
+        state: present
+
+
