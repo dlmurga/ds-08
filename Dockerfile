@@ -12,8 +12,8 @@ RUN git config --global user.email "dlmurga@yandex.ru" && \
     git config --global user.name "Dmitriy" && \
     git init && \
     git remote add origin https://$username:$token@github.com/dlmurga/ds-08-docker.git && \
-    git pull origin main && \
     git add hello-world-war-1.0.0.war && \
+    git pull origin main && \
     git commit -m "war file added" && \
     git branch -M main
 WORKDIR $PACKAGE_DIR/hello-world-war/target
