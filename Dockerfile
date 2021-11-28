@@ -8,13 +8,12 @@ WORKDIR $PACKAGE_DIR
 RUN git clone http://github.com/efsavage/hello-world-war.git
 RUN mvn package -f $PACKAGE_DIR/hello-world-war/pom.xml
 WORKDIR $PACKAGE_DIR/hello-world-war/target
-RUN git config --global user.email "dlmurga@yandex.ru" && \
+RUN git config --global user.email "dl.murga@yandex.ru" && \
     git config --global user.name "Dmitriy" && \
     git init && \
     git remote add origin https://$username:$token@github.com/dlmurga/ds-08-docker.git && \
     git add hello-world-war-1.0.0.war && \
     git commit -m "war file added" && \
-    git pull origin main --allow-unrelated-histories && \
     git branch -M main
 WORKDIR $PACKAGE_DIR/hello-world-war/target
-CMD git push -u origin main
+CMD git push origin main
