@@ -12,9 +12,9 @@
         - ca-certificates
         - curl
         - software-properties-common
-        - python3-pip
+        - python-pip
         - virtualenv
-        - python3-setuptools
+        - python-setuptools
     - name: add GPG_key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
