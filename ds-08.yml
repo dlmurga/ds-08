@@ -45,6 +45,7 @@
     - name: pull build-service image
       docker_image:
         name: dlmurga/build-service
+        source: pull
     - name: create container
       docker_container:
         name: ds-08-build
@@ -57,7 +58,7 @@
     - name: pull tomcat image
       docker_image:
         name: dlmurga/tomcat-service
-        state: present
+        source: pull
     - name: create container
       docker_container:
         name: ds-08-run
