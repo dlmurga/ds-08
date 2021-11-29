@@ -29,7 +29,7 @@
         name: docker-ce
         state: latest
     - name: Install Docker Module for Python
-      pip3:
+      pip:
         name: docker
     - name: ensure docker service is started
       service:
