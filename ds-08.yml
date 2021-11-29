@@ -1,8 +1,7 @@
 ---
 - name: install docker build-service
-  hosts: build
+  hosts: all
   become: yes
-
   tasks:
     - name: install dependencies
       apt:
@@ -38,6 +37,11 @@
         name: docker
         state: started
         enabled: yes
+
+- name: execute docker with build service
+  hosts: build
+  become: yes
+  tasks:
     - name: pull build-service image
       docker_image:
         name: dlmurga/build-service
@@ -46,4 +50,16 @@
         name: ds-08-build
         state: present
 
+- name: execute docker with tomcat service
+  hosts: run
+  become: yes
+  tasks:
+    - name: pull tomcat image
+      docker_image:
+        name: dlmurga/tomcat-service
+        state: present
+    - name: create container
+      docker_container:
+        name: ds-08-run
+        state: present
 
