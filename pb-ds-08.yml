@@ -23,6 +23,10 @@
         path: /package_folder
         state: directory
         mode: '0777'
+    - name: ensure Dockerfile exists
+      file:
+        src: Dockerfile
+        dest: /package_folder
     - name: clone git repo with java app code
       git:
         repo: http://github.com/efsavage/hello-world-war.git
@@ -38,6 +42,6 @@
         password: pla5stex_dh
     - name: build docker image
       docker_image:
-        path: /home/ubuntu/ds-08
+        path: /package_folder
         name: dlmurga/app_tomcat
         push: yes
