@@ -1,4 +1,23 @@
 ---
+- name: install required components
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: ensure recuired packages are installed
+      apt:
+        name: "{{item}}"
+        state: present
+      with_items:
+        - python-pip
+        - python-setuptools
+        - virtualenv
+        - docker-ce
+    - name : ensure docker Python module is installed
+      pip:
+        name: docker
+
+
 - name: building java app
   hosts: build
   become: yes
@@ -11,13 +30,6 @@
       with_items:
         - default-jdk
         - maven
-        - python-pip
-        - python-setuptools
-        - virtualenv
-        - docker-ce
-    - name : ensure docker Python module is installed
-      pip:
-        name: docker
     - name: ensure package folder exists
       file:
         path: /package_folder
@@ -45,3 +57,16 @@
         path: /package_folder
         name: dlmurga/app_tomcat
         push: yes
+
+
+- name: runnig java app
+  hosts: run
+  become: yes
+
+  tasks:
+    - name:
+      docker_container:
+        name: app_tomcat
+        image: dlmurga/app_tomcat
+        exposed_ports:
+          - 8080
