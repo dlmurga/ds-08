@@ -24,7 +24,7 @@
         state: directory
         mode: '0777'
     - name: ensure Dockerfile exists
-      file:
+      copy:
         src: Dockerfile
         dest: /package_folder
     - name: clone git repo with java app code
