@@ -68,5 +68,5 @@
       docker_container:
         name: app_tomcat
         image: dlmurga/app_tomcat
-        exposed_ports:
-          - 8080
+        ports:
+          - "8080:8080"
