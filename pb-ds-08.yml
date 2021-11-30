@@ -18,14 +18,19 @@
     - name : ensure docker Python module is installed
       pip:
         name: docker
+    - name: ensure package folder exists
+      file:
+        path: /package_folder
+        state: directory
+        mode: '0777'
     - name: clone git repo with java app code
       git:
         repo: http://github.com/efsavage/hello-world-war.git
-        dest: /tmp
+        dest: package_folder
     - name: package java app
       shell:
         cmd: mvn package
-        chdir: /tmp/hello-world-war
+        chdir: /package_folder/hello-world-war
     - name: login into dockerhub
       docker_login:
         username: dlmurga
