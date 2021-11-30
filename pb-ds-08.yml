@@ -14,7 +14,7 @@
         - python-pip
         - python-setuptools
         - virtualenv
-        - docker.io
+        - docker-ce
     - name : ensure docker Python module is installed
       pip:
         name: docker
