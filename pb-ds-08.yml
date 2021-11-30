@@ -33,7 +33,7 @@
         chdir: /package_folder/
     - name: login into dockerhub
       docker_login:
-        username: dlmurga
+        username: dlmurga@yandex.ru
         password: pla5stex_dh
     - name: build docker image
       docker_image:
