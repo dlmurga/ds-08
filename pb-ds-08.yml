@@ -30,7 +30,7 @@
     - name: package java app
       shell:
         cmd: mvn package
-        chdir: /package_folder/hello-world-war
+        chdir: /package_folder/
     - name: login into dockerhub
       docker_login:
         username: dlmurga
