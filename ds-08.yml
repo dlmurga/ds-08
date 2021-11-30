@@ -41,24 +41,16 @@
   hosts: build
   become: yes
   tasks:
-    - name: pull build-service image
-      docker_image:
-        name: dlmurga/build-service
-        source: pull
     - name: create container
       docker_container:
         name: ds-08-build
+        image: dlmurga/build-service
         state: present
 
 - name: execute docker with tomcat service
   hosts: run
   become: yes
-  tasks:
-    - name: pull tomcat image
-      docker_image:
-        name: dlmurga/tomcat-service
-        source: pull
-    - name: create container
+  tasks:    - name: create container
       docker_container:
         name: ds-08-run
         state: present

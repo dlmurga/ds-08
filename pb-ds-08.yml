@@ -1,0 +1,37 @@
+---
+- name: building java app
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: ensure recuired packages are installed
+      apt:
+        name: "{{item}}"
+        state: present
+      with_items:
+        - default-jdk
+        - maven
+        - python-pip
+        - python-setuptools
+        - virtualenv
+        - docker.io
+    - name : ensure docker Python module is installed
+      pip:
+        name: docker
+    - name: clone git repo with java app code
+      git:
+        repo: http://github.com/efsavage/hello-world-war.git
+        dest: /tmp
+    - name: package java app
+      shell:
+        cmd: mvn package
+        chdir: /tmp/hello-world-war
+    - name: login into dockerhub
+      docker_login:
+        username: dlmurga
+        password: pla5stex_dh
+    - name: build docker image
+      docker_image:
+        path: .
+        name: dlmurga/app_tomcat
+        push: yes
