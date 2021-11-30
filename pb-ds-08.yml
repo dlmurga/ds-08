@@ -38,6 +38,5 @@
         password: pla5stex_dh
     - name: build docker image
       docker_image:
-        path: .
         name: dlmurga/app_tomcat
         push: yes
