@@ -26,7 +26,7 @@
     - name: clone git repo with java app code
       git:
         repo: http://github.com/efsavage/hello-world-war.git
-        dest: package_folder
+        dest: /package_folder
     - name: package java app
       shell:
         cmd: mvn package
